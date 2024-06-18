@@ -2,8 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-
-const CarDetailsPage = ({ params }) => {
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+interface CarDetailsPageProps {
+  params: Params;
+}
+const CarDetailsPage = ({ params }: CarDetailsPageProps) => {
   const [car, setCar] = useState(null);
   const { id } = params;
   useEffect(() => {
