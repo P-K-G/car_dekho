@@ -1,14 +1,26 @@
-'use client'; // Add this line at the top
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+
 interface CarDetailsPageProps {
   params: Params;
 }
+
+interface CarDetails {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  thumbnail: string;
+  // Add any other properties you need based on the API response
+}
+
 const CarDetailsPage = ({ params }: CarDetailsPageProps) => {
-  const [car, setCar] = useState(null);
+  const [car, setCar] = useState<CarDetails | null>(null);
   const { id } = params;
+
   useEffect(() => {
     const fetchCarDetails = async () => {
       const response = await fetch(`https://dummyjson.com/products/${id}`);
@@ -16,9 +28,7 @@ const CarDetailsPage = ({ params }: CarDetailsPageProps) => {
       setCar(data);
     };
 
-    if (id) {
-      fetchCarDetails();
-    }
+    fetchCarDetails();
   }, [id]);
 
   const handleEditCar = () => {

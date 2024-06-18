@@ -2,8 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+interface Car {
+  id: number;
+  title: string;
+  thumbnail: string;
+  price: number;
+  // Add any other properties you need based on the API response
+}
+
 const CarListingPage = () => {
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState<Car[]>([]);
 
   useEffect(() => {
     const fetchCars = async () => {
